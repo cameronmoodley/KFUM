@@ -7,9 +7,11 @@ class CoursePage extends Component {
       super(props)
        this.state = {
            posts: [],
+           moduleName: "",
+           slides: []
        }
-       
        this.getData = this.getData.bind(this);
+       this.getSlides = this.getSlides.bind(this);
   }
 
 
@@ -30,6 +32,23 @@ class CoursePage extends Component {
     })
   }
 
+  getSlides() {
+    fetch('https://kfum-kfuk.herokuapp.com/ ' + this.moduleName + ' /slides')
+    .then( (response) => {
+        return response.json();
+    })
+    .then((result) => {
+        console.log('slides',result);
+        this.setState({
+          slides: result
+        })
+    })
+  }
+
+  slideContent() {
+    const withoutRows = this.state.slides.map(i => <div className="col-md-6"><ModuleSlide>{i}</ModuleSlide></div>);
+  }
+
  //You should only make api calls in these pages   
   render() {
     return (
@@ -43,7 +62,8 @@ class CoursePage extends Component {
         <div className="[ modules ][ row ]">
         </div>
 
-        <div className="[ slides ][ row ]">
+        <div className="[ slides ]">
+          {slideContent()};
         </div>
       </div>
     );
