@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CourseDetailPage from './../../components/course-detail-component/course-detail-component';
+import CourseDetail from './../../components/course-detail/course-detail';
 
 class CoursePage extends Component {
 
@@ -35,7 +35,7 @@ class CoursePage extends Component {
     return (
         <div>
             Hello Oslo from your parent
-            <CourseDetailPage></CourseDetailPage>
+            <CourseDetail></CourseDetail>
         </div>
     );
   }
