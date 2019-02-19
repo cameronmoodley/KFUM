@@ -33,10 +33,19 @@ class CoursePage extends Component {
  //You should only make api calls in these pages   
   render() {
     return (
-        <div>
-            Hello Oslo from your parent
+      <div>
+        <div className="[ courseDetail ][ row ]">
+          <div className="[ col-12 ]">
             <CourseDetail></CourseDetail>
+          </div>
         </div>
+
+        <div className="[ modules ][ row ]">
+        </div>
+
+        <div className="[ slides ][ row ]">
+        </div>
+      </div>
     );
   }
 }
