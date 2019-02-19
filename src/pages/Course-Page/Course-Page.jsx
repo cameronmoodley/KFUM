@@ -31,7 +31,8 @@ class CoursePage extends Component {
         })
     })
   }
-
+  
+ /*
   getSlides() {
     fetch('https://kfum-kfuk.herokuapp.com/ ' + this.moduleName + ' /slides')
     .then( (response) => {
@@ -44,10 +45,9 @@ class CoursePage extends Component {
         })
     })
   }
-
   slideContent() {
     const withoutRows = this.state.slides.map(i => <div className="col-md-6"><ModuleSlide>{i}</ModuleSlide></div>);
-  }
+  }*/
 
  //You should only make api calls in these pages   
   render() {
@@ -63,7 +63,7 @@ class CoursePage extends Component {
         </div>
 
         <div className="[ slides ]">
-          {slideContent()};
+          {/*slideContent() */ }
         </div>
       </div>
     );
