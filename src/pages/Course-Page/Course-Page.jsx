@@ -31,7 +31,7 @@ class CoursePage extends Component {
         })
     })
   }
-  
+
  /*
   getSlides() {
     fetch('https://kfum-kfuk.herokuapp.com/ ' + this.moduleName + ' /slides')
@@ -63,7 +63,7 @@ class CoursePage extends Component {
         </div>
 
         <div className="[ slides ]">
-          {/*slideContent() */ }
+          {/*slideContent()*/}
         </div>
       </div>
     );
