@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ModuleButton from './../../components/module-button/module-button';
 import CourseDetail from './../../components/course-detail/course-detail';
 
 class CoursePage extends Component {
@@ -11,13 +12,16 @@ class CoursePage extends Component {
         slides: [],
         activeModule: "",
         activeSlide: "",
-        activeCourse: ""
+        activeCourse: 0
       }
       this.getData = this.getData.bind(this);
+      this.test = this.test.bind(this);
   }
 
   componentDidMount() {
     this.getData("courses");
+    this.getData("modules");
+    this.getData("slides");
   }
 
   getData(type){
@@ -27,10 +31,28 @@ class CoursePage extends Component {
     })
     .then((result) => {
         console.log('result',result);
-        this.setState({
-            courses: result
-        })
-        console.log(this.state.courses[0].name)
+        switch(type) {
+          case "courses":
+            this.setState({
+              courses: result
+            })
+          break;
+
+          case "modules":
+            this.setState({
+              modules: result
+            })
+          break;
+
+          case "slides":
+            this.setState({
+              slides: result
+            })
+          break;
+
+          default:
+           console.log("Zug zug, something went wrong in fetch switch statement")
+        }
     })
   }
 
@@ -44,6 +66,10 @@ class CoursePage extends Component {
 
   deleteData(type, id) {
 
+  }
+
+  test() {
+    console.log("function check");
   }
 
  //You should only make api calls in these pages   
@@ -60,6 +86,7 @@ class CoursePage extends Component {
         </div>
 
         <div className="[ modules ][ row ]">
+          {(this.state.modules.length !== 0) ? this.state.modules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
           {/* Module components with data from api will be added here */}
         </div>
 

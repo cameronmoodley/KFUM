@@ -14,7 +14,6 @@ class ModuleButton extends React.Component{
     constructor(props){
         super(props);
         this.state = ({
-            moduleName: this.props.name, // Name of the module displayed on button
             method: this.props.method, // Function to run on button click
         })
     }
@@ -22,7 +21,7 @@ class ModuleButton extends React.Component{
     render(){
         return(
             <button className="ModuleBtn" onClick={ this.state.method }>
-                { this.state.moduleName }
+                { this.props.children }
             </button>
         )
     }
