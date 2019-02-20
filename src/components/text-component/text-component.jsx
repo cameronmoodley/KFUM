@@ -5,3 +5,16 @@
  * 
  * This should display paragraph text that should be able to be replaced with input fields when edited.
  */
+
+ import React from 'react';
+ class TextComp extends React. Component{
+    constructor(props){
+        super(props)
+    }
+     render(){
+         return(
+           <p>{ this.props.text }</p>
+         );
+     }
+ }
+ export default TextComp;
