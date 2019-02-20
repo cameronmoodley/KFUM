@@ -20,9 +20,11 @@ class ModuleButton extends React.Component{
 
     render(){
         return(
-            <button className="ModuleBtn" onClick={ this.state.method }>
-                { this.props.children }
-            </button>
+            <div className="[ col-md-4 ]">
+                <button className="[ modules--button ]" onClick={ this.state.method }>
+                    { this.props.children }
+                </button>
+            </div>
         )
     }
 }
