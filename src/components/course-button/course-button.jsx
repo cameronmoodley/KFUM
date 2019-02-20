@@ -7,3 +7,25 @@
  * 
  * Functinality of this button will be to display the module selected further down on the page and scroll you down to this section
 */
+
+import React from 'react';
+
+class ModuleButton extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = ({
+            moduleName: this.props.name, // Name of the module displayed on button
+            method: this.props.method, // Function to run on button click
+        })
+    }
+
+    render(){
+        return(
+            <button className="ModuleBtn" onClick={ this.state.method }>
+                { this.state.moduleName }
+            </button>
+        )
+    }
+}
+
+export default ModuleButton;
