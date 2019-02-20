@@ -10,7 +10,7 @@ class CoursePage extends Component {
         courses: [],
         modules: [],
         slides: [],
-        activeModule: "",
+        activeModules: [],
         activeSlide: "",
         activeCourse: 0
       }
@@ -41,7 +41,14 @@ class CoursePage extends Component {
           case "modules":
             this.setState({
               modules: result
-            })
+            });
+
+            this.state.activeModule = [];
+            for(let i = 0; i < result.length; i++) {
+                if(result[i].courseID === this.state.activeCourse) {
+                  this.state.activeModules.push(result[i]);
+                }
+            }
           break;
 
           case "slides":
@@ -86,7 +93,7 @@ class CoursePage extends Component {
         </div>
 
         <div className="[ modules ][ row ]">
-          {(this.state.modules.length !== 0) ? this.state.modules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
+          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
           {/* Module components with data from api will be added here */}
         </div>
 
