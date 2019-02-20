@@ -101,9 +101,6 @@ class CoursePage extends Component {
         
         <div className="[ slides ][ row ]">
           {/* Slide components with data from api will be added here*/}
-
-          {/* Trying to figure out how to map out all course names in API */}
-          {(this.state.courses.length !== 0) ? this.state.courses.map(i => <p>{i.name}</p>) : ""}
         </div>
       </div>
     );
