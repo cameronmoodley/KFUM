@@ -11,8 +11,9 @@ class CoursePage extends Component {
         modules: [],
         slides: [],
         activeModules: [],
-        activeSlide: "",
-        activeCourse: 0
+        activeSlide: [],
+        selectedCourse: 0,
+        selectedModule: ""
       }
       this.getData = this.getData.bind(this);
       this.test = this.test.bind(this);
@@ -47,7 +48,7 @@ class CoursePage extends Component {
               activeModule: []
             })
             for(let i = 0; i < result.length; i++) {
-                if(result[i].courseID === this.state.activeCourse) {
+                if(result[i].courseID === this.state.selectedCourse) {
                   this.state.activeModules.push(result[i]);
                 }
             }
@@ -95,8 +96,8 @@ class CoursePage extends Component {
         </div>
 
         <div className="[ modules ][ row ]">
-          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
           {/* Module components with data from api will be added here */}
+          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
         </div>
 
         <div className="[ module-info ][ row ]">
