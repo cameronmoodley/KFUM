@@ -43,7 +43,9 @@ class CoursePage extends Component {
               modules: result
             });
 
-            this.state.activeModule = [];
+            this.setState({
+              activeModule: []
+            })
             for(let i = 0; i < result.length; i++) {
                 if(result[i].courseID === this.state.activeCourse) {
                   this.state.activeModules.push(result[i]);
