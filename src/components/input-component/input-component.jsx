@@ -2,25 +2,36 @@ import React from 'react';
 class editInput extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            text: this.props.text
-        }
+        this.state = ({input:''});
+        
+        this.handleChange.bind(this);
+        this.handleSubmit.bind(this);
     }
 
-    handleChange(){
+    handleChange(event){
         this.setState({
-            text:
-        })
+            input:event.target.value
+        });
+    }
+
+    handleSubmit(event){
+        this.state.value;
     }
 
     render(){
         return(
-            <input type="text" value={this.state.text} onChange={handleChange}/>
+            <input className ="[ inputName ]" type="text" value={this.state.input} onChange={handleChange}/>
+            <button className="[ changeThisTextButton ]" onClick={this.handleChange}/>
+            <button className="" onClick={this.handleSubmit}/>
         );
     }
 }
 
+ReactDOM.render(
+    <App/>, document.getElementById('root')
+);
 
 
 
-// class changeThisText = document.getElementById('changeThisText');
+
+// class changeThisText = document.getElementById('changeThisTextButton');
