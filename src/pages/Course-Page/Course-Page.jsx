@@ -139,16 +139,22 @@ class CoursePage extends Component {
     //Select slide?
   }
 
-  editIcon() {
+  editClicked() {
     //Change related text to input field
   }
 
-  deleteIcon() {
+  deleteClicked() {
     //Delete related field
   }
 
+  addSlide() {
+    this.addData("slides");
+    this.getData("slides");
+  }
+
+
   addModule() {
-    //Add new module or slide.
+    //Add new module
     this.addData("modules");
     this.getData("modules");
   }
