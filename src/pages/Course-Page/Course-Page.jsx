@@ -18,7 +18,6 @@ class CoursePage extends Component {
       this.getData = this.getData.bind(this);
       this.addData = this.addData.bind(this);
       this.test = this.test.bind(this);
-      this.addData = this.addData.bind(this);
       this.addModule = this.addModule.bind(this);
   }
 
