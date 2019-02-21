@@ -16,6 +16,7 @@ class CoursePage extends Component {
         selectedModule: 0
       }
       this.getData = this.getData.bind(this);
+      this.addData = this.addData.bind(this);
       this.test = this.test.bind(this);
   }
 
@@ -72,7 +73,49 @@ class CoursePage extends Component {
   }
 
   addData(type) {
+    let addJSON;
+
+    switch(type) {
+      case 'courses':
+        addJSON = JSON.stringify({
+          courseID: this.state.courses.length,
+          name: '',
+          description: ''
+        })
+      break;
+
+      case 'modules':
+      addJSON = JSON.stringify({
+        courseID: this.state.selectedCourse,
+        moduleID: this.state.modules.length,
+        name: '',
+        description: ''
+      })
+      break;
+
+      case 'slides':
+      addJSON = JSON.stringify({
+        courseID: this.state.selectedCourse,
+        moduleID: this.state.selectedModule,
+        slideID: this.state.slides.length,
+        title: '',
+        content: ''
+      })
+      break;
+      
+      default:
+      console.log('Error in POST function')
+      break;
+    }
     //Add new empty module or slide
+    fetch('https://kfuk-kfum.herokuapp.com/' + type, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: addJSON
+    })
   }
 
   updateData(type, id, content) {
@@ -127,6 +170,9 @@ class CoursePage extends Component {
         <div className="[ modules ][ row ]">
           {/* Module components with data from api will be added here */}
           {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
+          
+          <button onClick={this.addData('modules')}> Click me to add new Module </button>
+        
         </div>
 
         <div className="[ module-info ][ row ]">
