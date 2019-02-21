@@ -1,5 +1,5 @@
 import React from 'react';
-class editInput extends React.Component{
+class EditInput extends React.Component{
     constructor(props){
         super(props);
         this.state = ({input:''});
@@ -20,17 +20,16 @@ class editInput extends React.Component{
 
     render(){
         return(
-            <input className ="[ inputName ]" type="text" value={this.state.input} onChange={handleChange}/>
+            <div>
+            <input className ="[ inputName ]" type="text" value={this.state.input} onChange={this.handleChange}/>
             <button className="[ changeThisTextButton ]" onClick={this.handleChange}/>
-            <button className="" onClick={this.handleSubmit}/>
+            <button className="[ changeThisTextSubmit ]" onClick={this.handleSubmit}/>
+            </div>
         );
     }
 }
 
-ReactDOM.render(
-    <App/>, document.getElementById('root')
-);
-
+export default EditInput;
 
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ModuleButton from './../../components/module-button/module-button';
 import CourseDetail from './../../components/course-detail/course-detail';
+import EditInput from './../../components/input-component/input-component';
 
 class CoursePage extends Component {
 
