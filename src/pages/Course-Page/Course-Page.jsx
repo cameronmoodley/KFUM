@@ -76,15 +76,39 @@ class CoursePage extends Component {
   }
 
   addData(type) {
-
+    //Add new empty module or slide
   }
 
   updateData(type, id, content) {
-
+    //Update data on module or slide
   }
 
   deleteData(type, id) {
+    //Delete a module or slide
+    //If module is deleted all related slides should also be deleted.
+  }
 
+  moduleClicked() {
+    //Do whatever when a module is selected
+    //Show related slides
+  }
+
+  slideClicked() {
+    //Do whatever when a slide is clicked
+    //Go into slide?
+    //Select slide?
+  }
+
+  editIcon() {
+    //Change related text to input field
+  }
+
+  deleteIcon() {
+    //Delete related field
+  }
+
+  addElement() {
+    //Add new module or slide.
   }
 
   test() {
