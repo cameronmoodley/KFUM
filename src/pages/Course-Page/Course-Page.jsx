@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ModuleButton from './../../components/module-button/module-button';
-import CourseDetail from './../../components/course-detail/course-detail';
+import Slide from './../../components/module-slide/module-slide';
 
 class CoursePage extends Component {
 
@@ -11,18 +11,18 @@ class CoursePage extends Component {
         modules: [],
         slides: [],
         activeModules: [],
-        activeSlide: [],
+        activeSlides: [],
         selectedCourse: 0,
-        selectedModule: ""
+        selectedModule: 0
       }
       this.getData = this.getData.bind(this);
       this.test = this.test.bind(this);
   }
 
   componentDidMount() {
-    this.getData("courses");
-    this.getData("modules");
-    this.getData("slides");
+    this.getData("courses")
+    this.getData("modules")
+    this.getData("slides")
   }
 
   getData(type){
@@ -31,7 +31,7 @@ class CoursePage extends Component {
         return response.json();
     })
     .then((result) => {
-        console.log('result',result);
+        console.log(type,result);
         switch(type) {
           case "courses":
             this.setState({
@@ -58,6 +58,15 @@ class CoursePage extends Component {
             this.setState({
               slides: result
             })
+
+            this.setState({
+              activeSlides: []
+            })
+            for(let i = 0; i < result.length; i++) {
+              if(result[i].courseID === this.state.selectedCourse && result[i].moduleID === this.state.selectedModule) {
+                this.state.activeSlides.push(result[i]);
+              }
+            }
           break;
 
           default:
@@ -111,6 +120,7 @@ class CoursePage extends Component {
         
         <div className="[ slides ][ row ]">
           {/* Slide components with data from api will be added here*/}
+          {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.slideID} slide={i} />) : ""}
         </div>
       </div>
     );

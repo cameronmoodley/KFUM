@@ -14,17 +14,17 @@ class Slide extends React.Component{
     constructor(props){
         super(props);
         this.state = ({
-            slide: {},
-            method: this.props.function
+            //slide: this.props.slide,
+            method: this.props.method
         })
     }
 
     render(){
         return(
-            <div className="[ slides--element ]" onClick={ this.state.method }>
-                <h2 className="[ slides--element__title ]"> { this.state.id } </h2>
-                <p className="[ slides--element__text ]"> { this.props.children } </p>
-                <img className="[ slides--element__img ]" src={ this.state.src } alt={ this.state.title } />
+            <div className="[ slides--element ][ col-md-6 ]" onClick={ this.state.method }>
+                <h2 className="[ slides--element__title ]"> { this.props.slide.title } </h2>
+                <p className="[ slides--element__text ]"> { this.props.slide.content } </p>
+                <img className="[ slides--element__img ]" src="https://www.ceas-serbia.org/images/people/vladimir_putin.jpg" alt={ this.props.slide.title } />
             </div>
         )
     }
