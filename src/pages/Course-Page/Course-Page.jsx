@@ -17,6 +17,8 @@ class CoursePage extends Component {
       }
       this.getData = this.getData.bind(this);
       this.test = this.test.bind(this);
+      this.addData = this.addData.bind(this);
+      this.addModule = this.addModule.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +52,6 @@ class CoursePage extends Component {
               activeModules: filteredModules
             })
           break;
-
           case "slides":
             this.setState({
               slides: result
@@ -103,8 +104,10 @@ class CoursePage extends Component {
     //Delete related field
   }
 
-  addElement() {
+  addModule() {
     //Add new module or slide.
+    this.addData("modules");
+    this.getData("modules");
   }
 
   test() {
@@ -127,6 +130,7 @@ class CoursePage extends Component {
         <div className="[ modules ][ row ]">
           {/* Module components with data from api will be added here */}
           {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
+          <button onClick={this.addModule}>Add module</button>
         </div>
 
         <div className="[ module-info ][ row ]">
