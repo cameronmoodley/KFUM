@@ -43,15 +43,12 @@ class CoursePage extends Component {
             this.setState({
               modules: result
             });
-
+            
+            const filteredModules = result.filter(module => module.courseID === this.state.selectedCourse);
+            
             this.setState({
-              activeModule: []
+              activeModules: filteredModules
             })
-            for(let i = 0; i < result.length; i++) {
-                if(result[i].courseID === this.state.selectedCourse) {
-                  this.state.activeModules.push(result[i]);
-                }
-            }
           break;
 
           case "slides":
@@ -59,18 +56,17 @@ class CoursePage extends Component {
               slides: result
             })
 
+            const filteredSlides = result.filter(slide => slide.courseID === this.state.selectedCourse && slide.moduleID === this.state.selectedModule)
+
             this.setState({
-              activeSlides: []
-            })
-            for(let i = 0; i < result.length; i++) {
-              if(result[i].courseID === this.state.selectedCourse && result[i].moduleID === this.state.selectedModule) {
-                this.state.activeSlides.push(result[i]);
-              }
-            }
+              activeSlides: filteredSlides
+            });
+
           break;
 
           default:
-           console.log("Zug zug, something went wrong in fetch switch statement")
+           console.log("Zug zug, something went wrong in fetch switch statement");
+          break;
         }
     })
   }
