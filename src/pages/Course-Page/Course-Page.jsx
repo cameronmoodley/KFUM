@@ -156,6 +156,14 @@ class CoursePage extends Component {
   deleteData(type, id) {
     //Delete a module or slide
     //If module is deleted all related slides should also be deleted.
+    return fetch('https://kfuk-kfum.herokuapp.com/' + type + '/' + id, {
+      method: 'delete'
+    })
+    .then(response =>
+      response.json().then(json => {
+        return json;
+      })
+    );
   }
 
   moduleClicked() {
