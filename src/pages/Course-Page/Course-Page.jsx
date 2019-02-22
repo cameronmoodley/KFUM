@@ -30,22 +30,10 @@ class CoursePage extends Component {
   }
 
   getData(type){
-    return new Promise(
-      resolve => {
-        fetch('https://kfuk-kfum.herokuapp.com/' + type)
-        .then((response) => {
-            return response.json();
-        })
-        .then(function(result) {
-          resolve(result, type);
-        })
-      },
-
-      reject => {
-        reject("Rip API")
-      }
-
-    );
+    return fetch('https://kfuk-kfum.herokuapp.com/' + type)
+    .then((response) => {
+        return response.json();
+    })
   }
 
   update(type) {
@@ -92,61 +80,49 @@ class CoursePage extends Component {
   }
 
   addData(type) {
-    return new Promise(
+    let addJSON;
 
-      resolve => {
-        let addJSON;
+    switch(type) {
+      case 'courses':
+        addJSON = JSON.stringify({
+          courseID: this.state.courses.length,
+          name: '',
+          description: ''
+        })
+      break;
 
-        switch(type) {
-          case 'courses':
-            addJSON = JSON.stringify({
-              courseID: this.state.courses.length,
-              name: '',
-              description: ''
-            })
-          break;
-    
-          case 'modules':
-          addJSON = JSON.stringify({
-            courseID: this.state.selectedCourse,
-            moduleID: this.state.modules.length,
-            name: '',
-            description: ''
-          })
-          break;
-    
-          case 'slides':
-          addJSON = JSON.stringify({
-            courseID: this.state.selectedCourse,
-            moduleID: this.state.selectedModule,
-            slideID: this.state.slides.length,
-            title: '',
-            content: ''
-          })
-          break;
-          
-          default:
-          console.log('Error in POST function')
-          break;
-        }
-        //Add new empty module or slide
-        fetch('https://kfuk-kfum.herokuapp.com/' + type, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: addJSON
-        }).then(function() {
-          resolve("Resolved");
-        });
+      case 'modules':
+      addJSON = JSON.stringify({
+        courseID: this.state.selectedCourse,
+        moduleID: this.state.modules.length,
+        name: '',
+        description: ''
+      })
+      break;
+
+      case 'slides':
+      addJSON = JSON.stringify({
+        courseID: this.state.selectedCourse,
+        moduleID: this.state.selectedModule,
+        slideID: this.state.slides.length,
+        title: '',
+        content: ''
+      })
+      break;
+      
+      default:
+      console.log('Error in POST function')
+      break;
+    }
+    //Add new empty module or slide
+    return fetch('https://kfuk-kfum.herokuapp.com/' + type, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
-
-      reject => {
-        reject("Rip API")
-      }
-
-    );
+      body: addJSON
+    })
   }
 
   updateData(type, id) {
@@ -175,7 +151,7 @@ class CoursePage extends Component {
       console.log('Removed module / slide')
     );
   }
-  
+
   moduleClicked() {
     //Do whatever when a module is selected
     //Show related slides
