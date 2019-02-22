@@ -12,7 +12,7 @@ class CoursePage extends Component {
         slides: [],
         activeModules: [],
         activeSlides: [],
-        selectedCourse: 0,
+        selectedCourse: 666,
         selectedModule: 0
       }
       this.getData = this.getData.bind(this);
@@ -192,10 +192,10 @@ class CoursePage extends Component {
     return (
       <div>
         <div className="[ courseDetail ][ row ]">
-          <div className="[ col-md-6 ]">
+          <div className="[ col-sm-6 ]">
             {/* Text components with course data from api will be added here */}
           </div>
-          <div className="[ col-md-6 ]">
+          <div className="[ col-sm-6 ]">
             {/* Text components with course data from api will be added here */}
           </div>
         </div>
@@ -203,14 +203,14 @@ class CoursePage extends Component {
         <div className="[ modules ][ row ]">
           {/* Module components with data from api will be added here */}
           {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
-          <button onClick={this.addModule}>Add module</button>
        </div>
+       <button onClick={this.addModule}>Add module</button>
 
         <div className="[ module-info ][ row ]">
-          <div className="[ col-md-6 ]">
+          <div className="[ col-sm-6 ]">
             {/* Text components with module data from api will be added here */}          
           </div>
-          <div className="[ col-md-6 ]">
+          <div className="[ col-sm-6 ]">
             {/* Text components with module data from api will be added here */}
           </div>
         </div>
