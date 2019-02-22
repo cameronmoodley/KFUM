@@ -71,6 +71,9 @@ class UpdatedCoursePage extends Component {
         </div>
 
         <div className="[ modules ][ row ]">
+          {
+            
+          }
           {/* Module components with data from api will be added here */}
        </div>
 
