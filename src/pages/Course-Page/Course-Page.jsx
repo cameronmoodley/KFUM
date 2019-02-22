@@ -24,9 +24,9 @@ class CoursePage extends Component {
   }
 
   componentDidMount() {
-    this.getData("courses")
-    this.getData("modules")
-    this.getData("slides")
+    this.update("courses")
+    this.update("modules")
+    this.update("slides")
   }
 
   getData(type){
