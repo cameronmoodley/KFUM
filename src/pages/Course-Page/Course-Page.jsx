@@ -19,6 +19,8 @@ class CoursePage extends Component {
       this.addData = this.addData.bind(this);
       this.test = this.test.bind(this);
       this.addModule = this.addModule.bind(this);
+      this.manageAPI = this.manageAPI.bind(this);
+      this.update = this.update.bind(this);
   }
 
   componentDidMount() {
@@ -28,94 +30,123 @@ class CoursePage extends Component {
   }
 
   getData(type){
-    fetch('https://kfuk-kfum.herokuapp.com/' + type)
-    .then( (response) => {
-        return response.json();
-    })
-    .then((result) => {
-        console.log(type,result);
-        switch(type) {
-          case "courses":
-            this.setState({
-              courses: result
-            })
-          break;
+    return new Promise(
+      resolve => {
+        fetch('https://kfuk-kfum.herokuapp.com/' + type)
+        .then((response) => {
+            return response.json();
+        })
+        .then(function(result) {
+          resolve(result, type);
+        })
+      },
 
-          case "modules":
-            this.setState({
-              modules: result
-            });
-            
-            const filteredModules = result.filter(module => module.courseID === this.state.selectedCourse);
-            
-            this.setState({
-              activeModules: filteredModules
-            })
-          break;
-          case "slides":
-            this.setState({
-              slides: result
-            })
+      reject => {
+        reject("Rip API")
+      }
 
-            const filteredSlides = result.filter(slide => slide.courseID === this.state.selectedCourse && slide.moduleID === this.state.selectedModule)
-
-            this.setState({
-              activeSlides: filteredSlides
-            });
-
-          break;
-
-          default:
-           console.log("Zug zug, something went wrong in fetch switch statement");
-          break;
-        }
-    })
+    );
   }
 
-  addData(type) {
-    let addJSON;
+  update(type) {
+    this.getData(type)
+      .then(result => this.manageAPI(type, result));
+  }
 
+  manageAPI(type, result) {
     switch(type) {
-      case 'courses':
-        addJSON = JSON.stringify({
-          courseID: this.state.courses.length,
-          name: '',
-          description: ''
+      case "courses":
+        this.setState({
+          courses: result
         })
       break;
 
-      case 'modules':
-      addJSON = JSON.stringify({
-        courseID: this.state.selectedCourse,
-        moduleID: this.state.modules.length,
-        name: '',
-        description: ''
-      })
+      case "modules":
+        this.setState({
+          modules: result
+        });
+        
+        const filteredModules = result.filter(module => module.courseID === this.state.selectedCourse);
+        
+        this.setState({
+          activeModules: filteredModules
+        })
+      break;
+      case "slides":
+        this.setState({
+          slides: result
+        })
+
+        const filteredSlides = result.filter(slide => slide.courseID === this.state.selectedCourse && slide.moduleID === this.state.selectedModule)
+
+        this.setState({
+          activeSlides: filteredSlides
+        });
+
       break;
 
-      case 'slides':
-      addJSON = JSON.stringify({
-        courseID: this.state.selectedCourse,
-        moduleID: this.state.selectedModule,
-        slideID: this.state.slides.length,
-        title: '',
-        content: ''
-      })
-      break;
-      
       default:
-      console.log('Error in POST function')
+        console.log("Zug zug, something went wrong in fetch switch statement");
       break;
     }
-    //Add new empty module or slide
-    fetch('https://kfuk-kfum.herokuapp.com/' + type, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+  }
+
+  addData(type) {
+    return new Promise(
+
+      resolve => {
+        let addJSON;
+
+        switch(type) {
+          case 'courses':
+            addJSON = JSON.stringify({
+              courseID: this.state.courses.length,
+              name: '',
+              description: ''
+            })
+          break;
+    
+          case 'modules':
+          addJSON = JSON.stringify({
+            courseID: this.state.selectedCourse,
+            moduleID: this.state.modules.length,
+            name: '',
+            description: ''
+          })
+          break;
+    
+          case 'slides':
+          addJSON = JSON.stringify({
+            courseID: this.state.selectedCourse,
+            moduleID: this.state.selectedModule,
+            slideID: this.state.slides.length,
+            title: '',
+            content: ''
+          })
+          break;
+          
+          default:
+          console.log('Error in POST function')
+          break;
+        }
+        //Add new empty module or slide
+        fetch('https://kfuk-kfum.herokuapp.com/' + type, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: addJSON
+        }).then(function() {
+          resolve("Resolved");
+        });
       },
-      body: addJSON
-    })
+
+      reject => {
+        reject("Rip API")
+      }
+
+    );
   }
 
   updateData(type, id, content) {
@@ -147,15 +178,15 @@ class CoursePage extends Component {
   }
 
   addSlide() {
-    this.addData("slides");
-    this.getData("slides");
+    this.addData("slides")
+      .then(() => this.update("slides"))
   }
 
 
   addModule() {
     //Add new module
-    this.addData("modules");
-    this.getData("modules");
+    this.addData("modules")
+      .then(() => this.update("modules"));
   }
 
   test() {
