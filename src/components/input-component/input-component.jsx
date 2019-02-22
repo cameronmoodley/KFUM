@@ -14,16 +14,11 @@ class EditInput extends React.Component{
         });
     }
 
-    handleSubmit(event){
-        this.state.value;
-    }
-
     render(){
         return(
             <div>
-            <input className ="[ inputName ]" type="text" value={this.state.input} onChange={this.handleChange}/>
-            <button className="[ changeThisTextButton ]" onClick={this.handleChange}/>
-            <button className="[ changeThisTextSubmit ]" onClick={this.handleSubmit}/>
+            <input className ="[ inputName ]" type="text" value={this.state.input} onChange={this.handleChange}>Name</input>
+            <button className="[ changeThisTextButton ]" onClick={this.handleChange}>Edit</button>
             </div>
         );
     }
