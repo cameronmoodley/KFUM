@@ -148,8 +148,7 @@ class CoursePage extends Component {
 
     );
   }
-
-  updateData(type, id) {
+  updateData(type, id, content) {
     //Update data on module or slide
     fetch('https://kfuk-kfum.herokuapp.com/' + type + "/" + id, {
       method: 'PUT',
@@ -163,7 +162,6 @@ class CoursePage extends Component {
         })
     })
   }
-
   deleteData(type, id) {
     //Delete a module or slide
     //If module is deleted all related slides should also be deleted.
@@ -175,31 +173,25 @@ class CoursePage extends Component {
       console.log('Removed module / slide')
     );
   }
-  
   moduleClicked() {
     //Do whatever when a module is selected
     //Show related slides
   }
-
   slideClicked() {
     //Do whatever when a slide is clicked
     //Go into slide?
     //Select slide?
   }
-
   editClicked() {
     //Change related text to input field
   }
-
   deleteClicked() {
     //Delete related field
   }
-
   addSlide() {
     this.addData("slides")
       .then(() => this.update("slides"))
   }
-
 
   addModule() {
     //Add new module
