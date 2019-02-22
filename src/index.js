@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import CoursePage from './pages/Course-Page/Course-Page';
+// import CoursePage from './pages/Course-Page/Course-Page';
+import UpdateCoursePage from './pages/updated-course-page/Course-Page'
 
 ReactDOM.render(
     <Router>
