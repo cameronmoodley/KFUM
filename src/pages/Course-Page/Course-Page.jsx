@@ -165,7 +165,7 @@ class CoursePage extends Component {
       })
     );
   }
-
+  
   moduleClicked() {
     //Do whatever when a module is selected
     //Show related slides
