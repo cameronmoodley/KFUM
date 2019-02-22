@@ -149,8 +149,19 @@ class CoursePage extends Component {
     );
   }
 
-  updateData(type, id, content) {
+  updateData(type, id) {
     //Update data on module or slide
+    fetch('https://kfuk-kfum.herokuapp.com/' + type + "/" + id, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }, body: JSON.stringify({
+            courseID: id,
+            name: "",  // Get new name from input
+            description: "", // Get new description from input 
+        })
+    })
   }
 
   deleteData(type, id) {
@@ -160,9 +171,8 @@ class CoursePage extends Component {
       method: 'delete'
     })
     .then(response =>
-      response.json().then(json => {
-        return json;
-      })
+      // Define what should be returned, if any
+      console.log('Removed module / slide')
     );
   }
   
