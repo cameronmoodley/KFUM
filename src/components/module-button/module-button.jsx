@@ -13,16 +13,20 @@ import React from 'react';
 class ModuleButton extends React.Component{
     constructor(props){
         super(props);
-        this.state = ({
-            method: this.props.method, // Function to run on button click
-        })
+
+        this.clicked = this.clicked.bind(this);
+    }
+
+    clicked() {
+        this.props.moduleClicked(this.props.id);
     }
 
     render(){
+        
         return(
-            <div className="[ col-sm-4 ]">
-                <button className="[ modules--button ]" onClick={ this.state.method }>
-                    { this.props.children }
+            <div className="col-sm-4">
+                <button className="modules--button" onClick={ this.clicked }>
+                    <h2 className="heading">{ this.props.children }</h2>
                 </button>
             </div>
         )

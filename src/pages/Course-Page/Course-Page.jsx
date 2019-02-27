@@ -21,6 +21,7 @@ class CoursePage extends Component {
       this.addModule = this.addModule.bind(this);
       this.manageAPI = this.manageAPI.bind(this);
       this.update = this.update.bind(this);
+      this.moduleClicked = this.moduleClicked.bind(this);
   }
 
   componentDidMount() {
@@ -149,15 +150,16 @@ class CoursePage extends Component {
     );
   }
 
-  moduleClicked() {
-    //Do whatever when a module is selected
-    //Show related slides
+  moduleClicked(id) {
+    this.setState({
+      selectedModule: id
+    });
+    this.update("modules");
+    this.update("slides");
   }
 
   slideClicked() {
-    //Do whatever when a slide is clicked
-    //Go into slide?
-    //Select slide?
+    
   }
 
   editClicked() {
@@ -199,7 +201,7 @@ class CoursePage extends Component {
 
         <div className="[ modules ][ row ]">
           {/* Module components with data from api will be added here */}
-          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.id}>{i.name}</ModuleButton>) : ""}
+          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton moduleClicked={this.moduleClicked} id={i.id} key={i.id}>{i.name}</ModuleButton>) : ""}
        </div>
        <button onClick={this.addModule}>Add module</button>
 
