@@ -39,7 +39,7 @@ class CoursePage extends Component {
   }
 
   update(type) {
-    this.getData(type)
+    return this.getData(type)
       .then(result => this.manageAPI(type, result));
   }
 
@@ -182,7 +182,8 @@ class CoursePage extends Component {
   addModule() {
     //Add new module
     this.addData("modules")
-      .then(() => this.update("modules"));
+      .then(() => this.update("modules"))
+      //TODO: Make new module active
   }
 
   test() {

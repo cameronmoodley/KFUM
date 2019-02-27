@@ -63,17 +63,26 @@ code {
   outline: none;
   margin-bottom: 20px;
 }
-
-
+  
 .slides--element {
+  width: 75%;
+  display: inline-block;
+  text-align: center;
+  background-color: grey;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin: 0 auto;
 }
 
 
 .slides--element__title {
+  display: inline;
 }
 
-.slides--element__text{
-}
 
 .slides--element__img{
+  height: 90px;
+  margin: 0; padding: 10px;
+  border-radius: 15px;
+  float: right;
 }

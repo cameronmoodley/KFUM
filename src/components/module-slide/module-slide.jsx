@@ -21,10 +21,11 @@ class Slide extends React.Component{
 
     render(){
         return(
-            <div className="[ slides--element ][ col-sm-6 ]" onClick={ this.state.method }>
-                <h2 className="[ slides--element__title ]"> { this.props.slide.title } </h2>
-                <p className="[ slides--element__text ]"> { this.props.slide.content } </p>
-                <img className="[ slides--element__img ]" src="https://www.ceas-serbia.org/images/people/vladimir_putin.jpg" alt={ this.props.slide.title } />
+            <div className="[ col-sm-6 ]">
+                <div className="[ slides--element ]" onClick={ this.state.method }>
+                    <h2 className="[ slides--element__title ]"> { this.props.slide.title } </h2>
+                    <img className="[ slides--element__img ]" src="https://www.ceas-serbia.org/images/people/vladimir_putin.jpg" alt={ this.props.slide.title } />
+                </div>
             </div>
         )
     }
