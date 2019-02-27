@@ -12,7 +12,7 @@ class CoursePage extends Component {
         slides: [],
         activeModules: [],
         activeSlides: [],
-        selectedCourse: 666,
+        selectedCourse: 1,
         selectedModule: 0
       }
       this.getData = this.getData.bind(this);
@@ -85,7 +85,6 @@ class CoursePage extends Component {
     switch(type) {
       case 'courses':
         addJSON = JSON.stringify({
-          courseID: this.state.courses.length,
           name: '',
           description: ''
         })
@@ -94,7 +93,6 @@ class CoursePage extends Component {
       case 'modules':
       addJSON = JSON.stringify({
         courseID: this.state.selectedCourse,
-        moduleID: this.state.modules.length,
         name: '',
         description: ''
       })
@@ -104,7 +102,6 @@ class CoursePage extends Component {
       addJSON = JSON.stringify({
         courseID: this.state.selectedCourse,
         moduleID: this.state.selectedModule,
-        slideID: this.state.slides.length,
         title: '',
         content: ''
       })
@@ -127,7 +124,7 @@ class CoursePage extends Component {
 
   updateData(type, id) {
     //Update data on module or slide
-    fetch('https://kfuk-kfum.herokuapp.com/' + type + "/" + id, {
+    return fetch('https://kfuk-kfum.herokuapp.com/' + type + "/" + id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -202,7 +199,7 @@ class CoursePage extends Component {
 
         <div className="[ modules ][ row ]">
           {/* Module components with data from api will be added here */}
-          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.moduleID}>{i.name}</ModuleButton>) : ""}
+          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.id}>{i.name}</ModuleButton>) : ""}
        </div>
        <button onClick={this.addModule}>Add module</button>
 
