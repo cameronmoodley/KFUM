@@ -122,19 +122,17 @@ class CoursePage extends Component {
     })
   }
 
-  updateData(type, id, name, content) {
+  updateData(type, id) {
     //Update data on module or slide
-    console.log(<ModuleButton />)
     return fetch('https://kfuk-kfum.herokuapp.com/' + type + "/" + id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
     }, body: JSON.stringify({
-            // Recieves data from child
             courseID: id,
-            name: name,
-            description: content 
+            name: "",  // Get new name from input
+            description: "", // Get new description from input 
         })
     })
   }
@@ -201,7 +199,7 @@ class CoursePage extends Component {
 
         <div className="[ modules ][ row ]">
           {/* Module components with data from api will be added here */}
-          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.updateData} id={i.id} key={i.id}>{i.name}</ModuleButton>) : ""}
+          {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton method={this.test} key={i.id}>{i.name}</ModuleButton>) : ""}
        </div>
        <button onClick={this.addModule}>Add module</button>
 
