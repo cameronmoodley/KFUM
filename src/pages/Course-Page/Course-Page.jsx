@@ -13,12 +13,13 @@ class CoursePage extends Component {
         activeModules: [],
         activeSlides: [],
         selectedCourse: 1,
-        selectedModule: 0
+        selectedModule: 1
       }
       this.getData = this.getData.bind(this);
       this.addData = this.addData.bind(this);
       this.test = this.test.bind(this);
       this.addModule = this.addModule.bind(this);
+      this.addSlide = this.addSlide.bind(this);
       this.manageAPI = this.manageAPI.bind(this);
       this.update = this.update.bind(this);
       this.moduleClicked = this.moduleClicked.bind(this);
@@ -203,7 +204,6 @@ class CoursePage extends Component {
           {/* Module components with data from api will be added here */}
           {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton moduleClicked={this.moduleClicked} id={i.id} key={i.id}>{i.name}</ModuleButton>) : ""}
        </div>
-       <button onClick={this.addModule}>Add module</button>
 
         <div className="[ module-info ][ row ]">
           <div className="[ col-sm-6 ]">
@@ -218,6 +218,8 @@ class CoursePage extends Component {
           {/* Slide components with data from api will be added here*/}
           {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.slideID} slide={i} />) : ""}
         </div>
+        <button onClick={this.addModule}>Add module</button>
+        <button onClick={this.addSlide}>Add Slide</button>
       </div>
     );
   }
