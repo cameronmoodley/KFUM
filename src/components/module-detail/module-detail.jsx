@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EditableText from './../editable-text/editable-text';
 
 class ModuleDetail extends Component {
+  
   render() {
     return (
         <div className="col-sm-12">

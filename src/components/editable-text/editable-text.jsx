@@ -16,7 +16,8 @@ class EditableText extends Component {
 
     click() {
         this.setState({
-            edit: true
+            edit: true,
+            data: this.props.children
         });
     }
 
@@ -46,6 +47,10 @@ class EditableText extends Component {
                         content: this.state.data
                     });
                 break;
+
+                default:
+                    console.error("something went wrong with switch statement");
+                break;
             }
 
             this.setState({
@@ -53,6 +58,7 @@ class EditableText extends Component {
             });
         }
     }
+    
 
     handleBlur() {
 
@@ -80,6 +86,10 @@ class EditableText extends Component {
                     content: this.state.data
                 });
             break;
+
+            default:
+                console.error("something went wrong with switch statement");
+            break;
         }
 
         this.setState({
@@ -94,9 +104,7 @@ class EditableText extends Component {
     }
 
     render() {
-
         const style = this.props.style;
-        
         const classes = [
             "editableText"
         ];
@@ -123,7 +131,7 @@ class EditableText extends Component {
             //Non edit mode
             <div className={classes.join(" ")} style={style}>
                 <p>
-                    {(this.state.data === "") ? "<empty> " : this.state.data + " "}
+                    {(this.props.children === "") ? "<empty> " : this.props.children + " "}
                     <span onClick={this.click}>
                         <i className="fas fa-pencil-alt"></i>
                     </span>

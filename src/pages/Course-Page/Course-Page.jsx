@@ -31,8 +31,8 @@ class CoursePage extends Component {
 
   componentDidMount() {
     this.update("courses")
-    this.update("modules")
-    this.update("slides")
+    .then(() => this.update("modules"))
+    .then(() => this.update("slides"))
   }
 
   getData(type){
@@ -157,20 +157,15 @@ class CoursePage extends Component {
     });
     this.update("modules");
     this.update("slides");
-  }
 
-  slideClicked() {
-    
+    this.setState({
+      mDetail: this.state.activeModules.filter(mod => mod.id === this.state.selectedModule)[0]
+    });
   }
 
   dataChange(type, id, object) {
     this.updateData(type, id, object)
       .then(() => this.update(type))
-      .catch(err => console.error(err));
-  }
-
-  deleteClicked() {
-    //Delete related field
   }
 
   addSlide() {
@@ -193,10 +188,9 @@ class CoursePage extends Component {
  //You should only make api calls in these pages   
   render() {
 
-    let cDetail = this.state.courses.filter(course => course.id === this.state.selectedCourse);
-    let mDetail = this.state.activeModules.filter(mod => mod.id === this.state.selectedModule);
-    cDetail = cDetail[0];
-    mDetail = mDetail[0];
+    let cDetail = this.state.courses.filter(course => course.id === this.state.selectedCourse)[0];
+    let mDetail = this.state.activeModules.filter(mod => mod.id === this.state.selectedModule)[0];
+
     return (
       <div>
         <div className="[ courseDetail ][ row ]">
