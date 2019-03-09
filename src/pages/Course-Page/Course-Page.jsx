@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ModuleButton from './../../components/module-button/module-button';
 import Slide from './../../components/module-slide/module-slide';
+import CourseDetail from './../../components/course-detail/course-detail';
+import ModuleDetail from './../../components/module-detail/module-detail';
 
 class CoursePage extends Component {
 
@@ -23,6 +25,8 @@ class CoursePage extends Component {
       this.manageAPI = this.manageAPI.bind(this);
       this.update = this.update.bind(this);
       this.moduleClicked = this.moduleClicked.bind(this);
+      this.updateData = this.updateData.bind(this);
+      this.dataChange = this.dataChange.bind(this);
   }
 
   componentDidMount() {
@@ -124,20 +128,14 @@ class CoursePage extends Component {
     })
   }
 
-  updateData(type, id, name, content) {
-    //Update data on module or slide
-    console.log(<ModuleButton />)
+  updateData(type, id, object) {
+    console.log(type, id, object)
     return fetch('https://kfuk-kfum.herokuapp.com/' + type + "/" + id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-    }, body: JSON.stringify({
-            // Recieves data from child
-            courseID: id,
-            name: name,
-            description: content 
-        })
+    }, body: JSON.stringify(object)
     })
   }
 
@@ -165,8 +163,10 @@ class CoursePage extends Component {
     
   }
 
-  editClicked() {
-    //Change related text to input field
+  dataChange(type, id, object) {
+    this.updateData(type, id, object)
+      .then(() => this.update(type))
+      .catch(err => console.error(err));
   }
 
   deleteClicked() {
@@ -192,34 +192,28 @@ class CoursePage extends Component {
 
  //You should only make api calls in these pages   
   render() {
+
+    let cDetail = this.state.courses.filter(course => course.id === this.state.selectedCourse);
+    let mDetail = this.state.activeModules.filter(mod => mod.id === this.state.selectedModule);
+    cDetail = cDetail[0];
+    mDetail = mDetail[0];
     return (
       <div>
         <div className="[ courseDetail ][ row ]">
-          <div className="[ col-sm-6 ]">
-            {/* Text components with course data from api will be added here */}
-          </div>
-          <div className="[ col-sm-6 ]">
-            {/* Text components with course data from api will be added here */}
-          </div>
+          <CourseDetail course={cDetail} update={this.dataChange} />
         </div>
 
         <div className="[ modules ][ row ]">
-          {/* Module components with data from api will be added here */}
           {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton moduleClicked={this.moduleClicked} id={i.id} key={i.id}>{i.name}</ModuleButton>) : ""}
        </div>
 
         <div className="[ module-info ][ row ]">
-          <div className="[ col-sm-6 ]">
-            {/* Text components with module data from api will be added here */}          
-          </div>
-          <div className="[ col-sm-6 ]">
-            {/* Text components with module data from api will be added here */}
-          </div>
+          {<ModuleDetail module={mDetail} update={this.dataChange} />}
         </div>
         
         <div className="[ slides ][ row ]">
           {/* Slide components with data from api will be added here*/}
-          {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.slideID} slide={i} />) : ""}
+          {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.id} slide={i} />) : ""}
         </div>
         <button onClick={this.addModule}>Add module</button>
         <button onClick={this.addSlide}>Add Slide</button>

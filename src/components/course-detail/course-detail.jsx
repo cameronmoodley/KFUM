@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import EditableText from './../editable-text/editable-text';
 
 class CourseDetail extends Component {
- //You should only make api calls in these pages   
+
   render() {
     return (
-        <div>
-          id: {this.props.id} <br />
-          name: {this.props.name} <br />
-          description: {this.props.description} <br />
+        <div className="col-sm-12">
+          id: {this.props.course ? this.props.course.id : ""} <br />
+          name: {this.props.course ? <EditableText update={this.props.update} type="courses" target={this.props.course} data="name">{this.props.course.name}</EditableText> : ""}<br />
+          description: {this.props.course ? <EditableText update={this.props.update} type="courses" target={this.props.course} data="description">{this.props.course.description}</EditableText> : ""}<br />
         </div>
     );
   }

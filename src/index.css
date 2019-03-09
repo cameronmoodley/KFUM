@@ -86,3 +86,18 @@ code {
   border-radius: 15px;
   float: right;
 }
+
+.editableText input {
+  display: block;
+  margin: 1em 0;
+}
+.editableText p span {
+  color: #000000;
+  background-color: #90EE90;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.editableText p span:hover {
+  background-color: #38e038;
+}
