@@ -27,7 +27,7 @@ class ModuleButton extends React.Component{
         
         return(
             <div className="col-sm-4">
-                <button className="modules--button" onClick={ this.clicked }>
+                <button className="modules-button" onClick={ this.clicked }>
                     <h2 className="heading">{ this.props.children }</h2>
                 </button>
             </div>

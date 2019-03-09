@@ -198,19 +198,26 @@ class CoursePage extends Component {
 
     return (
       <div>
-        <div className="[ courseDetail ][ row ]">
+        <div className="header row">
+          <div className="col-sm-12">
+
+          </div>
+          <h3>Header</h3>
+        </div>
+        <div className="courseDetail row">
           <CourseDetail course={cDetail} update={this.dataChange}/>
         </div>
 
-        <div className="[ modules ][ row ]">
+        <div className="row modules">
+          <h3>Modules in this course</h3>
           {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton moduleClicked={this.moduleClicked} id={i.id} key={i.id}>{i.name}</ModuleButton>) : ""}
        </div>
 
-        <div className="[ module-info ][ row ]">
+        <div className="moduleDetail row">
           {<ModuleDetail module={mDetail} update={this.dataChange} delete={this.dataDelete} />}
         </div>
         
-        <div className="[ slides ][ row ]">
+        <div className="slides row">
           {/* Slide components with data from api will be added here*/}
           {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.id} slide={i} update={this.dataChange} delete={this.dataDelete} />) : ""}
         </div>

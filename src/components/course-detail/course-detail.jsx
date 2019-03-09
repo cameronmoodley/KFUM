@@ -5,11 +5,28 @@ class CourseDetail extends Component {
 
   render() {
     return (
-        <div className="col-sm-12">
-          id: {this.props.course ? this.props.course.id : ""} <br />
-          name: {this.props.course ? <EditableText update={this.props.update} type="courses" target={this.props.course} data="name">{this.props.course.name}</EditableText> : ""}<br />
-          description: {this.props.course ? <EditableText update={this.props.update} type="courses" target={this.props.course} data="description">{this.props.course.description}</EditableText> : ""}<br />
+      <div>
+        <div className="col-sm-12" style={{textAlign: "center"}}>
+          <div className="courseDetail-section">
+            <h2>Course Information</h2>
+          </div>
         </div>
+        <div className="col-sm-6">
+          <div className="courseDetail-section">
+            <h3>Course ID: {this.props.course ? this.props.course.id : ""}</h3>
+          </div>
+          <div className="courseDetail-section">
+            <h3>Course name:</h3>
+            {this.props.course ? <EditableText style={{fontSize: "20px"}} update={this.props.update} type="courses" target={this.props.course} data="name">{this.props.course.name}</EditableText> : ""}
+          </div>
+        </div>
+        <div className="col-sm-6">
+          <div className="courseDetail-section">
+            <h3>Course description</h3>
+            {this.props.course ? <EditableText style={{fontSize: "20px"}} update={this.props.update} type="courses" target={this.props.course} data="description">{this.props.course.description}</EditableText> : ""}
+          </div>
+        </div>
+      </div>
     );
   }
 }
