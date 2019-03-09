@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import EditableText from './../editable-text/editable-text';
 
 class ModuleDetail extends Component {
+  constructor(props) {
+    super(props);
+
+    this.deleteModule = this.deleteModule.bind(this);
+  }
+
+  deleteModule() {
+    this.props.delete("modules", this.props.module.id);
+  }
   
   render() {
     return (
@@ -9,6 +18,7 @@ class ModuleDetail extends Component {
           id: {this.props.module ? this.props.module.id : ""} <br />
           name: {this.props.module ? <EditableText update={this.props.update} type="modules" target={this.props.module} data="name">{this.props.module.name}</EditableText> : ""}<br />
           description: {this.props.module ? <EditableText update={this.props.update} type="modules" target={this.props.module} data="description">{this.props.module.description}</EditableText> : ""}<br />
+          <button onClick={this.deleteModule}>Delete Module</button>
         </div>
     );
   }

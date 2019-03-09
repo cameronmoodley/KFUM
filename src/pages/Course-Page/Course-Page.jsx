@@ -17,6 +17,7 @@ class CoursePage extends Component {
         selectedCourse: 1,
         selectedModule: 1
       }
+
       this.getData = this.getData.bind(this);
       this.addData = this.addData.bind(this);
       this.test = this.test.bind(this);
@@ -27,6 +28,8 @@ class CoursePage extends Component {
       this.moduleClicked = this.moduleClicked.bind(this);
       this.updateData = this.updateData.bind(this);
       this.dataChange = this.dataChange.bind(this);
+      this.deleteData = this.deleteData.bind(this);
+      this.dataDelete = this.dataDelete.bind(this);
   }
 
   componentDidMount() {
@@ -140,14 +143,11 @@ class CoursePage extends Component {
   }
 
   deleteData(type, id) {
-    //Delete a module or slide
-    //If module is deleted all related slides should also be deleted.
     return fetch('https://kfuk-kfum.herokuapp.com/' + type + '/' + id, {
       method: 'delete'
     })
     .then(response =>
-      // Define what should be returned, if any
-      console.log('Removed module / slide')
+      console.log(response)
     );
   }
 
@@ -181,6 +181,11 @@ class CoursePage extends Component {
       //TODO: Make new module active
   }
 
+  dataDelete(type, id) {
+    this.deleteData(type, id)
+      .then(() => this.update(type))
+  }
+
   test() {
     console.log("function check");
   }
@@ -194,7 +199,7 @@ class CoursePage extends Component {
     return (
       <div>
         <div className="[ courseDetail ][ row ]">
-          <CourseDetail course={cDetail} update={this.dataChange} />
+          <CourseDetail course={cDetail} update={this.dataChange}/>
         </div>
 
         <div className="[ modules ][ row ]">
@@ -202,12 +207,12 @@ class CoursePage extends Component {
        </div>
 
         <div className="[ module-info ][ row ]">
-          {<ModuleDetail module={mDetail} update={this.dataChange} />}
+          {<ModuleDetail module={mDetail} update={this.dataChange} delete={this.dataDelete} />}
         </div>
         
         <div className="[ slides ][ row ]">
           {/* Slide components with data from api will be added here*/}
-          {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.id} slide={i} />) : ""}
+          {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.id} slide={i} update={this.dataChange} delete={this.dataDelete} />) : ""}
         </div>
         <button onClick={this.addModule}>Add module</button>
         <button onClick={this.addSlide}>Add Slide</button>

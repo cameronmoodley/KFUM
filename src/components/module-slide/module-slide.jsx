@@ -9,6 +9,7 @@
  */
 
 import React from 'react';
+import EditableText from './../editable-text/editable-text';
 
 class Slide extends React.Component{
     constructor(props){
@@ -17,15 +18,21 @@ class Slide extends React.Component{
             //slide: this.props.slide,
             method: this.props.method
         })
+        this.deleteSlide = this.deleteSlide.bind(this);
+    }
+
+    deleteSlide() {
+        this.props.delete("slides", this.props.slide.id);
     }
 
     render(){
         return(
             <div className="[ col-sm-6 ]">
-                <div className="[ slides--element ]" onClick={ this.state.method }>
-                    <h2 className="[ slides--element__title ]"> { this.props.slide.title } </h2>
-                    <img className="[ slides--element__img ]" src="https://www.ceas-serbia.org/images/people/vladimir_putin.jpg" alt={ this.props.slide.title } />
+                <div className="[ slides--element ]">
+                    <EditableText update={this.props.update} type="slides" target={this.props.slide} data="title">{this.props.slide.title}</EditableText>
+                    <img className="[ slides--element__img ]" src="https://s-media-cache-ak0.pinimg.com/736x/c4/d4/82/c4d482a830bc0580f42d3b6fd26a034a--colour-palettes-scenery.jpg" alt={ this.props.slide.title } />
                 </div>
+                <button onClick={this.deleteSlide}>Delete slide</button>
             </div>
         )
     }
