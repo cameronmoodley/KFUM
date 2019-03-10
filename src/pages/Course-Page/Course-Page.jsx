@@ -3,6 +3,8 @@ import ModuleButton from './../../components/module-button/module-button';
 import Slide from './../../components/module-slide/module-slide';
 import CourseDetail from './../../components/course-detail/course-detail';
 import ModuleDetail from './../../components/module-detail/module-detail';
+import AddModule from './../../components/new-module/new-module';
+import AddSlide from './../../components/new-slide/new-slide';
 
 class CoursePage extends Component {
 
@@ -200,9 +202,8 @@ class CoursePage extends Component {
       <div>
         <div className="header row">
           <div className="col-sm-12">
-
+            <h3>Header</h3>
           </div>
-          <h3>Header</h3>
         </div>
         <div className="courseDetail row">
           <CourseDetail course={cDetail} update={this.dataChange}/>
@@ -211,6 +212,7 @@ class CoursePage extends Component {
         <div className="row modules">
           <h3>Modules in this course</h3>
           {(this.state.activeModules.length !== 0) ? this.state.activeModules.map(i => <ModuleButton moduleClicked={this.moduleClicked} id={i.id} key={i.id}>{i.name}</ModuleButton>) : ""}
+          <AddModule method={this.addModule}></AddModule>
        </div>
 
         <div className="moduleDetail row">
@@ -220,9 +222,11 @@ class CoursePage extends Component {
         <div className="slides row">
           {/* Slide components with data from api will be added here*/}
           {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.id} slide={i} update={this.dataChange} delete={this.dataDelete} />) : ""}
+          <AddSlide method={this.addSlide}></AddSlide>
         </div>
-        <button onClick={this.addModule}>Add module</button>
-        <button onClick={this.addSlide}>Add Slide</button>
+
+        <div className="footer row">
+        </div>
       </div>
     );
   }

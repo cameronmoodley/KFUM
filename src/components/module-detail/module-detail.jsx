@@ -28,7 +28,9 @@ class ModuleDetail extends Component {
           <div className="moduleDetail-section">
             <h3>Module description</h3>
             {this.props.module ? <EditableText update={this.props.update} type="modules" target={this.props.module} data="description">{this.props.module.description}</EditableText> : ""}
-            <button onClick={this.deleteModule}>Delete Module</button>
+          </div>
+          <div className="moduleDetail-section">
+            <span onClick={this.deleteModule} className="module-element-delete">Delete Module <i class="fas fa-trash-alt"></i></span>
           </div>
         </div>
       </div>

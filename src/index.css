@@ -47,6 +47,44 @@ code {
   outline: none;
 }
 
+.add-module {
+  position: relative;
+  padding-top: 70%;
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  background-color: lightgreen;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0.1px 0.5px 4px #000000;
+  margin-bottom: 30px;
+  outline: none;
+  cursor: pointer;
+}
+
+.add-module:hover {
+  background-color: #38e038;
+}
+
+.add-module i {
+  position: absolute;
+  font-size: 5em;
+  top: 50%;
+  left: 20%;
+  right: 20%;
+  margin: -30px;
+}
+
+.module-element-delete {
+  color: red;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.module-element-delete:hover {
+  color: darkred;
+}
+
 .heading {
   position: absolute;
   top: 50%;
@@ -55,34 +93,64 @@ code {
   margin: -16px;
   font-size: 2rem;
   font-weight: initial;
-  
 }
 
 .modules-button:hover {
   background-color: #5ecef3;
 }
+
+.slide {
+  margin-bottom: 50px;
+}
   
 .slides--element {
-  width: 75%;
-  display: inline-block;
-  text-align: center;
-  background-color: grey;
+  background-color: lightblue;
   border: 1px solid black;
   border-radius: 15px;
-  margin: 0 auto;
 }
 
-
-.slides--element__title {
-  display: inline;
+.slides--img {
+  display: inline-block;
+  height: 100px;
+  width: 50%;
+  text-align: right;
 }
-
 
 .slides--element__img{
-  height: 90px;
-  margin: 0; padding: 10px;
+  height: 100px;
   border-radius: 15px;
-  float: right;
+}
+
+.slides--text {
+  width: 50%;
+  display: inline-block;
+  text-align: right;
+}
+
+.slides--element__delete {
+  color: red;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.slides--element__delete:hover {
+  color: darkred;
+}
+
+.add-slide {
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  background-color: lightgreen;
+  cursor: pointer;
+  margin-top: 42px;
+  font-size: 6.3rem;
+  text-align: center;
+}
+
+.add-slide:hover {
+  background-color: #38e038;
 }
 
 .editableText input {
@@ -127,6 +195,13 @@ code {
   margin: 0 auto;
   padding-bottom: 40px;
 }
+
+.footer {
+  margin-top: 100px;
+  background-color: lightblue;
+  height: 100px;
+}
+
 
 @media only screen and (max-width: 768px) {
   .courseDetail-section {
