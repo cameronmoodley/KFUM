@@ -18,9 +18,53 @@ code {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.courseDetail {
+  background-color: white;
+  border: 1px solid lightgray;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+.courseDetail h3 {
+  border-radius: 10px 10px 0 0;
+  padding: 20px 0;
+  margin: 0 0 40px 0;
+  background-color: lightblue;
+}
+
+.moduleDetail {
+  background-color: white;
+  border: 1px solid lightgray;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+.moduleDetail h3 {
+  border-radius: 10px 10px 0 0;
+  padding: 20px 0;
+  margin: 0 0 40px 0;
+  background-color: lightblue;
+}
+
+.slides {
+  background-color: white;
+  border: 1px solid lightgray;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+.slides h3 {
+  border-radius: 10px 10px 0 0;
+  padding: 20px 0;
+  margin: 0 0 40px 0;
+  background-color: lightblue;
+}
+
 .modules {
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid lightgray;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
   margin: auto;
   text-align: center;
   padding-bottom: 20px;
@@ -158,19 +202,18 @@ code {
   margin: 1em 0;
 }
 .editableText p span {
-  color: #000000;
-  background-color: #90EE90;
+  color: #218121;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
 }
 .editableText p span:hover {
-  background-color: #38e038;
+  color: #0c2e0c;
 }
 
 .courseDetail {
-  padding-top: 50px;
-  padding-bottom: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .courseDetail-section {
@@ -180,14 +223,13 @@ code {
 }
 
 .header {
-  background-color: lightblue;
   padding-bottom: 10px;
   text-align: center;
 }
 
 .moduleDetail {
-  padding-top: 50px;
-  padding-bottom: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .moduleDetail-section {
@@ -197,9 +239,8 @@ code {
 }
 
 .footer {
-  margin-top: 100px;
-  background-color: lightblue;
-  height: 100px;
+  margin-top: 20px;
+  height: 50px;
 }
 
 

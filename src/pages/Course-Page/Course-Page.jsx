@@ -17,7 +17,7 @@ class CoursePage extends Component {
         activeModules: [],
         activeSlides: [],
         selectedCourse: 1,
-        selectedModule: 1
+        selectedModule: 0
       }
 
       this.getData = this.getData.bind(this);
@@ -85,7 +85,7 @@ class CoursePage extends Component {
       break;
 
       default:
-        console.log("Zug zug, something went wrong in fetch switch statement");
+        console.log("Something went wrong in fetch switch statement");
       break;
     }
   }
@@ -157,9 +157,15 @@ class CoursePage extends Component {
     this.setState({
       selectedModule: id
     });
-    this.update("modules");
+    this.update("modules")
+    .then(() => {
+      let target = document.getElementById("module");
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    })
     this.update("slides");
-
     this.setState({
       mDetail: this.state.activeModules.filter(mod => mod.id === this.state.selectedModule)[0]
     });
@@ -180,10 +186,14 @@ class CoursePage extends Component {
     //Add new module
     this.addData("modules")
       .then(() => this.update("modules"))
-      //TODO: Make new module active
   }
 
   dataDelete(type, id) {
+    if(type === "modules") {
+      this.setState({
+        selectedModule: 0
+      })
+    }
     this.deleteData(type, id)
       .then(() => this.update(type))
   }
@@ -202,10 +212,11 @@ class CoursePage extends Component {
       <div>
         <div className="header row">
           <div className="col-sm-12">
-            <h3>Header</h3>
+            <h1>MY COURSES</h1>
           </div>
         </div>
-        <div className="courseDetail row">
+        <div className="courseDetail row" style={{marginLeft: "0", marginRight: "0"}}>
+          <h3 style={{textAlign: "center"}}>Course Information</h3>  
           <CourseDetail course={cDetail} update={this.dataChange}/>
         </div>
 
@@ -215,15 +226,29 @@ class CoursePage extends Component {
           <AddModule method={this.addModule}></AddModule>
        </div>
 
-        <div className="moduleDetail row">
-          {<ModuleDetail module={mDetail} update={this.dataChange} delete={this.dataDelete} />}
-        </div>
+        {
+
+        (this.state.selectedModule !== 0 )
         
-        <div className="slides row">
-          {/* Slide components with data from api will be added here*/}
-          {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.id} slide={i} update={this.dataChange} delete={this.dataDelete} />) : ""}
-          <AddSlide method={this.addSlide}></AddSlide>
-        </div>
+        ?
+        <React.Fragment>
+          <div id="module" className="row moduleDetail" style={{marginLeft: "0", marginRight: "0"}}>
+            <h3 style={{textAlign: "center"}}>Module Information</h3>
+            {<ModuleDetail module={mDetail} update={this.dataChange} delete={this.dataDelete} />}
+          </div>
+          <div className="slides row">
+            {/* Slide components with data from api will be added here*/}
+            <h3 style={{textAlign: "center"}}>Slides</h3>
+            {(this.state.activeSlides.length !== 0) ? this.state.activeSlides.map(i => <Slide method={this.test} key={i.id} slide={i} update={this.dataChange} delete={this.dataDelete} />) : ""}
+            <AddSlide method={this.addSlide}></AddSlide>
+          </div>
+        </React.Fragment>
+
+        :
+
+        <React.Fragment></React.Fragment>
+
+        }
 
         <div className="footer row">
         </div>

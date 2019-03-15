@@ -7,7 +7,7 @@ class AddModule extends React.Component{
         return(
             <div className="col-sm-4">
                 <div className="add-module" onClick={this.props.method}>
-                    <i class="fas fa-plus"></i>
+                    <i className="fas fa-plus"></i>
                 </div>
             </div>
         )

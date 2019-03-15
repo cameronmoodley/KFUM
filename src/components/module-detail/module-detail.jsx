@@ -17,20 +17,20 @@ class ModuleDetail extends Component {
       <div>
         <div className="col-sm-6">
           <div className="moduleDetail-section">
-            <h3>Module ID: {this.props.module ? this.props.module.id : ""}</h3>
+            <h4>Module ID: {this.props.module ? this.props.module.id : ""}</h4>
           </div>
           <div className="moduleDetail-section">
-            <h3>Module name:</h3>
+            <h4>Module name:</h4>
             {this.props.module ? <EditableText update={this.props.update} type="modules" target={this.props.module} data="name">{this.props.module.name}</EditableText> : ""}
           </div>
         </div>
         <div className="col-sm-6">
           <div className="moduleDetail-section">
-            <h3>Module description</h3>
+            <h4>Module description</h4>
             {this.props.module ? <EditableText update={this.props.update} type="modules" target={this.props.module} data="description">{this.props.module.description}</EditableText> : ""}
           </div>
           <div className="moduleDetail-section">
-            <span onClick={this.deleteModule} className="module-element-delete">Delete Module <i class="fas fa-trash-alt"></i></span>
+            <span onClick={this.deleteModule} className="module-element-delete">Delete Module <i className="fas fa-trash-alt"></i></span>
           </div>
         </div>
       </div>
