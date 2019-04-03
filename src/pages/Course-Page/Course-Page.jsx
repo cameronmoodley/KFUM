@@ -41,7 +41,7 @@ class CoursePage extends Component {
   }
 
   getData(type){
-    return fetch('https://kfuk-kfum.herokuapp.com/' + type)
+    return fetch('/' + type)
     .then((response) => {
         return response.json();
     })
@@ -123,7 +123,7 @@ class CoursePage extends Component {
       break;
     }
     //Add new empty module or slide
-    return fetch('https://kfuk-kfum.herokuapp.com/' + type, {
+    return fetch('/' + type, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -135,7 +135,7 @@ class CoursePage extends Component {
 
   updateData(type, id, object) {
     console.log(type, id, object)
-    return fetch('https://kfuk-kfum.herokuapp.com/' + type + "/" + id, {
+    return fetch('/' + type + "/" + id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -145,7 +145,7 @@ class CoursePage extends Component {
   }
 
   deleteData(type, id) {
-    return fetch('https://kfuk-kfum.herokuapp.com/' + type + '/' + id, {
+    return fetch('/' + type + '/' + id, {
       method: 'delete'
     })
     .then(response =>
